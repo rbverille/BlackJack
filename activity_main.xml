@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/dealerCard1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="150dp"
+        android:background="@color/cardColor"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/dealerCard2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="150dp"
+        android:background="@color/cardColor"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/dealerCard1"
+ />
+
+
+
+    <TextView
+        android:id="@+id/PlayerCard1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="150dp"
+        android:background="@color/cardColor"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/dealerCard1"
+        />
+
+
+    <TextView
+        android:id="@+id/PlayerCard2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="150dp"
+        android:background="@color/cardColor"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/dealerCard1"
+        android:layout_toRightOf="@+id/PlayerCard1"
+
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/PlayerCard1"
+        android:layout_marginTop="30dp"
+        android:text="Play"
+        android:onClick="letsPlay"/>
+
+
+</RelativeLayout>
