@@ -4,6 +4,9 @@ public class BlackJack {
 
     //put all rules
 
+
+    public int value3;
+
 //has no cards
     public boolean hasNoCards(){
         return true;
@@ -14,7 +17,9 @@ public class BlackJack {
 
 
 //players hand 2 cards
-
+public boolean hand2(){
+        return true;
+}
 
 //dealers hand 2 cards
 
@@ -22,7 +27,10 @@ public class BlackJack {
 //hit = i want another card
 
 
-//stop = i dont want any other cards
+//stop = i dont want any other card
+    public boolean stop(){
+        return true;
+    }
 
 //after 3 hits the button is disabled bc game is over
 
@@ -42,5 +50,13 @@ public class BlackJack {
         return true;
     }
 
+
+    public void setValue(int value){
+        value3 =  value;
+    }
+
+    public int getValue3(){
+        return value3;
+    }
 
 }
