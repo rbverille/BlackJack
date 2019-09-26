@@ -8,6 +8,10 @@ public class BlackJack {
     public int sumOfTwoCards;
     public int sumOfThreeCards;
     public int sumOfFourCards;
+    public int sumOfOneAndTwoD;
+    public int sumOfThreeDealerCards;
+    public int sumOfFourDealerCards;
+
 
     public int value4;
 
@@ -39,35 +43,16 @@ public boolean hand2(){
 //after 3 hits the button is disabled bc game is over
 
 
-//player won
-    public boolean playerWon(){
-        return true;
-    }
-
-//dealer won
-    public boolean dealerWon(){
-        return true;
-    }
-
-//tie
-    public boolean tieGame(){
-        return true;
-    }
-
-
-    public void setSumOfTwoCards(int value){
+    public void setSum2PlayerCards(int value){
         sumOfTwoCards =  value;
     }
 
-    public int getSumOfTwoCards(){
+    public int getSumTwoPlayerCards(){
         return sumOfTwoCards;
     }
 
-    public boolean playerHasCards(){
-        return true;
-    }
 
-    public void setSumOfThreeCards(int value){
+    public void setThreeCardsSumPlayer(int value){
         sumOfThreeCards = value;
     }
 
@@ -103,6 +88,41 @@ public boolean hand2(){
 
 
         return true;
+    }
+
+
+    public void setSumOfDealOneAndTwo(int value){
+        sumOfOneAndTwoD = value;
+    }
+
+    public int getSumOfOneAndTwoD(){
+        return sumOfOneAndTwoD;
+    }
+
+    public void setSumOfThreeDealerCards(int value){
+        sumOfThreeDealerCards = value;
+    }
+
+    public int getSumOfThreeDealerCards(){
+        return sumOfThreeDealerCards;
+    }
+
+
+
+    public void setSumOfFourDealerCards(int value){
+        sumOfFourDealerCards = value;
+    }
+
+    public int getSumOfFourDealerCards(){
+        return sumOfFourDealerCards;
+    }
+
+
+    public boolean not21(int value){
+       if (value < 21){
+           return true;
+       }
+       return false;
     }
 
 }
