@@ -5,7 +5,11 @@ public class BlackJack {
     //put all rules
 
 
-    public int value3;
+    public int sumOfTwoCards;
+    public int sumOfThreeCards;
+    public int sumOfFourCards;
+
+    public int value4;
 
 //has no cards
     public boolean hasNoCards(){
@@ -51,12 +55,54 @@ public boolean hand2(){
     }
 
 
-    public void setValue(int value){
-        value3 =  value;
+    public void setSumOfTwoCards(int value){
+        sumOfTwoCards =  value;
     }
 
-    public int getValue3(){
-        return value3;
+    public int getSumOfTwoCards(){
+        return sumOfTwoCards;
+    }
+
+    public boolean playerHasCards(){
+        return true;
+    }
+
+    public void setSumOfThreeCards(int value){
+        sumOfThreeCards = value;
+    }
+
+
+    public int getSumOfThreeCards(){
+        return sumOfThreeCards;
+    }
+
+
+
+    public void setSumOfFourCards(int value){
+        sumOfFourCards = value;
+    }
+
+
+    public int getSumOfFourCards(){
+        return sumOfFourCards;
+    }
+
+
+    public void setCardfFourValue(int value){
+        value4 = value;
+    }
+
+
+
+    public int getCard4Value(){
+        return value4;
+    }
+
+    public boolean gameOver(){
+
+
+
+        return true;
     }
 
 }
