@@ -245,7 +245,22 @@
         android:layout_toRightOf="@id/hitButton"
         android:visibility="invisible"
         android:layout_marginTop="30dp"
-        android:text="Stop"/>
+        android:text="Stop"
+        android:onClick="stop"
+        />
 
+    <Button
+        android:id="@+id/restartGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/playerCard1"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible"
+        android:text="New Game"
+        android:onClick="restartGame"
+        />
 
 </RelativeLayout>
