@@ -63,6 +63,29 @@ public boolean hand2(){
 
 
 
+    public boolean playerWins(){
+        if(sumOfOneAndTwoD < sumOfTwoCards || sumOfThreeDealerCards < sumOfThreeCards || sumOfFourDealerCards < sumOfFourCards){
+            return true;
+        }
+        return false;
+    }
+
+
+    public boolean dealerWins(){
+        if(sumOfOneAndTwoD > sumOfTwoCards || sumOfThreeDealerCards > sumOfThreeCards || sumOfFourDealerCards > sumOfFourCards) {
+            return true;
+        }
+        return false;
+    }
+
+    //or if they are both over 21
+    public boolean tiegame(){
+        if(sumOfOneAndTwoD == sumOfTwoCards || sumOfThreeDealerCards == sumOfThreeCards || sumOfFourDealerCards == sumOfFourCards) {
+            return true;
+        }
+        return false;
+    }
+
     public void setSumOfFourCards(int value){
         sumOfFourCards = value;
     }
@@ -124,5 +147,12 @@ public boolean hand2(){
        }
        return false;
     }
+
+
+    public boolean blackjack(){
+        return true;
+    }
+
+
 
 }
