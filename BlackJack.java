@@ -2,154 +2,195 @@ package com.example.ryeverille.blackjack;
 
 public class BlackJack {
 
-    //put all rules
+    private int sumOfTwoCards;
+    private int sumOfThreeCards;
+    private int sumOfFourCards;
+    private int sumOfFiveCards;
+    private int sumOfTwoDealerCards;
+    private int sumOfThreeDealerCards;
+    private int sumOfFourDealerCards;
+    private int sumOfFiveDealerCards;
 
 
-    public int sumOfTwoCards;
-    public int sumOfThreeCards;
-    public int sumOfFourCards;
-    public int sumOfOneAndTwoD;
-    public int sumOfThreeDealerCards;
-    public int sumOfFourDealerCards;
-
-
-    public int value4;
-
-//has no cards
-    public boolean hasNoCards(){
-        return true;
-    }
-
-
-//blackjack --> cards == 21
-
-
-//players hand 2 cards
-public boolean hand2(){
-        return true;
-}
-
-//dealers hand 2 cards
-
-
-//hit = i want another card
-
-
-//stop = i dont want any other card
-    public boolean stop(){
-        return true;
-    }
-
-//after 3 hits the button is disabled bc game is over
-
-
+    /**
+     * setting the sum of the players two cards
+     * @param value - the sum of the players two cards
+     */
     public void setSum2PlayerCards(int value){
         sumOfTwoCards =  value;
     }
 
+    /**
+     * getting the sum of the players two cards
+     * @return the sum of the two cards
+     */
     public int getSumTwoPlayerCards(){
         return sumOfTwoCards;
     }
 
-
+    /**
+     * setting the sum of the players three cards
+     * @param value - the sum of the players three cards
+     */
     public void setThreeCardsSumPlayer(int value){
         sumOfThreeCards = value;
     }
 
-
+    /**
+     * getting the sum of the players three cards
+     * @return the sum of the three cards
+     */
     public int getSumOfThreeCards(){
         return sumOfThreeCards;
     }
 
-
-
-    public boolean playerWins(){
-        if(sumOfOneAndTwoD < sumOfTwoCards || sumOfThreeDealerCards < sumOfThreeCards || sumOfFourDealerCards < sumOfFourCards){
-            return true;
-        }
-        return false;
-    }
-
-
-    public boolean dealerWins(){
-        if(sumOfOneAndTwoD > sumOfTwoCards || sumOfThreeDealerCards > sumOfThreeCards || sumOfFourDealerCards > sumOfFourCards) {
-            return true;
-        }
-        return false;
-    }
-
-    //or if they are both over 21
-    public boolean tiegame(){
-        if(sumOfOneAndTwoD == sumOfTwoCards || sumOfThreeDealerCards == sumOfThreeCards || sumOfFourDealerCards == sumOfFourCards) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     *  setting the sum of the dealers four cards
+     * @param value - the sum of the dealers four cards
+     */
     public void setSumOfFourCards(int value){
         sumOfFourCards = value;
     }
 
 
+    /**
+     * getting the sum of the dealers four cards
+     * @return the sum of the four cards
+     */
     public int getSumOfFourCards(){
         return sumOfFourCards;
     }
 
 
-    public void setCardfFourValue(int value){
-        value4 = value;
+    /**
+     *  setting the sum of the dealers four cards
+     * @param value - the sum of the dealers four cards
+     */
+    public void setSumOfFiveCards(int value){
+        sumOfFiveCards = value;
     }
 
 
-
-    public int getCard4Value(){
-        return value4;
-    }
-
-    public boolean gameOver(){
-
-
-
-        return true;
+    /**
+     * getting the sum of the dealers four cards
+     * @return the sum of the four cards
+     */
+    public int getSumOfFiveCards(){
+        return sumOfFiveCards;
     }
 
 
-    public void setSumOfDealOneAndTwo(int value){
-        sumOfOneAndTwoD = value;
+    /**
+     * setting the sum of two dealer  cards
+     * @param value - the sum of the dealers two cards
+     */
+    public void setSumOfTwoDealerCards(int value){
+        sumOfTwoDealerCards = value;
     }
 
-    public int getSumOfOneAndTwoD(){
-        return sumOfOneAndTwoD;
+    /**
+     * getting the sum of the dealeres two cards
+     * @return the sum of the two cards
+     */
+    public int getSumOfTwoDealerCards(){
+        return sumOfTwoDealerCards;
     }
 
+    /**
+     * setting the sum of the dealer three cards
+     * @param value - the sum of the dealers three cards
+     */
     public void setSumOfThreeDealerCards(int value){
         sumOfThreeDealerCards = value;
     }
 
+    /**
+     * getting the sum of the dealers three cards
+     * @return the sum of the three cards
+     */
     public int getSumOfThreeDealerCards(){
         return sumOfThreeDealerCards;
     }
 
-
-
+    /**
+     * setting the sum of the players four cards
+     * @param value - the sum of the players four cards
+     */
     public void setSumOfFourDealerCards(int value){
         sumOfFourDealerCards = value;
     }
 
+    /**
+     * getting the sum of the dealers four cards
+     * @return the sum of the four cards
+     */
     public int getSumOfFourDealerCards(){
         return sumOfFourDealerCards;
     }
 
 
-    public boolean not21(int value){
-       if (value < 21){
-           return true;
-       }
-       return false;
+    /**
+     * setting the sum of the players five cards
+     * @param value - the sum of the players five cards
+     */
+    public void setSumOfFiveDealerCards(int value){
+        sumOfFiveDealerCards = value;
+    }
+
+    /**
+     * getting the sum of the dealers five cards
+     * @return the sum of the five cards
+     */
+    public int getSumOfFiveDealerCards(){
+        return sumOfFiveDealerCards;
     }
 
 
-    public boolean blackjack(){
+    /**
+     * decide if the player has won
+     * @return - true if the sum results in the player winning, else return false
+     */
+    public boolean playerWins(){
+        if(sumOfTwoDealerCards < sumOfTwoCards || sumOfThreeDealerCards < sumOfThreeCards || sumOfFourDealerCards < sumOfFourCards || sumOfFiveDealerCards < sumOfFiveCards){
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Decide if the dealer has won
+     * @return - true if the dealers cards are greater than the players cards, else return false
+     */
+    public boolean dealerWins(){
+        if((sumOfTwoDealerCards > sumOfTwoCards || sumOfThreeDealerCards > sumOfThreeCards) || (sumOfFourDealerCards > sumOfFourCards || sumOfFiveDealerCards > sumOfFiveCards)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Decide if the game is a tie
+     * @return - true if the dealers cards are equal to the players cards, else return false
+     */
+    public boolean tieGame(){
+        if(sumOfTwoDealerCards == sumOfTwoCards ){
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * Player or Dealer has blackjack (A and K)
+     * @return true if the player or dealer has blackjack
+     */
+    public boolean dealerBlackJack(){
+        return true;
+    }
+
+    public boolean playerBlackJack(){
         return true;
     }
 
