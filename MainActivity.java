@@ -6,9 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
 import android.content.Intent;
-
 import org.w3c.dom.Text;
-
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     *  This method prduces the functionality of the stop button
+     * @param view  - to access the GUI components
+     *
+     */
     public void stop(View view) {
         Button hitButton, stopButton, playButton;
         TextView gameOver = (TextView) findViewById(R.id.gameOver);
@@ -61,64 +64,52 @@ public class MainActivity extends AppCompatActivity {
             gameOver.setVisibility(View.VISIBLE);
             gameOver.setText("Dealer Wins");
         }
-
-        //if(blackJack.tiegame()){
-          //  gameOver.setVisibility(View.VISIBLE);
-           // gameOver.setText("Tie Game");
-        //}
+        if( blackJack.tieGame()) {
+            gameOver.setVisibility(View.VISIBLE);
+            gameOver.setText("Tie Game ");
+        }
     }
 
     /**
      * adds cards when the player hits
-     * @param view
+     * @param view - to access GUI components
      */
     public void hit(View view){
-        TextView p3 = (TextView) findViewById(R.id.playerCard3);
-        TextView newTotal = (TextView) findViewById(R.id.newTotal);
-        TextView p4 = (TextView) findViewById(R.id.playerCard4);
-        TextView cards4 = (TextView) findViewById(R.id.add4Cards);
-        TextView p5 = (TextView) findViewById(R.id.playerCard5);
-        TextView d3 = (TextView)findViewById(R.id.dealerCard3);
-        TextView d4 = (TextView)findViewById(R.id.dealerCard4);
-        TextView d5 = (TextView)findViewById(R.id.dealerCard5);
+        TextView playerCard3 = (TextView) findViewById(R.id.playerCard3);
+        TextView playerCard4 = (TextView) findViewById(R.id.playerCard4);
+        TextView playerCard5 = (TextView) findViewById(R.id.playerCard5);
+        TextView dealerCard3 = (TextView)findViewById(R.id.dealerCard3);
+        TextView dealerCard4 = (TextView)findViewById(R.id.dealerCard4);
+        TextView dealerCard5 = (TextView)findViewById(R.id.dealerCard5);
 
         counter+=1;
 
         //player card #3
         if(counter == 1){
             //make card 3 appear
-            p3.setVisibility(View.VISIBLE);
-            //set number to card 3
-            p3.setText(String.valueOf(randomNumPlayerCard3));
+            playerCard3.setVisibility(View.VISIBLE);
+            playerCard3.setText(String.valueOf(randomNumPlayerCard3));
             if (String.valueOf(randomNumPlayerCard3).equals("10")) {
-                p3.setText(String.valueOf(getFaceCard()));
+                playerCard3.setText(String.valueOf(getFaceCard()));
             }
             if (String.valueOf(randomNumPlayerCard3).equals("11")) {
-                p3.setText("A");
+                playerCard3.setText("A");
             }
 
-           // int value3rdCard = randomNumPlayerCard3;
             //add together the sum of the players first two card + the 3rd card
-            int sumThreePlayerCards = addCards(blackJack.getSumTwoPlayerCards(), randomNumPlayerCard3);
-            blackJack.setThreeCardsSumPlayer(sumThreePlayerCards);
-            newTotal.setText(String.valueOf(sumThreePlayerCards));
-
-            //dealer card 3 -- if value of card 1+2 < 21 add third card
-            //if(blackJack.getSumOfOneAndTwoD() < 21){
+            blackJack.setThreeCardsSumPlayer(addCards(blackJack.getSumTwoPlayerCards(), randomNumPlayerCard3));
 
             //as long as 1+2 is under 21 hit if not dont show the cards
-            if(blackJack.getSumOfOneAndTwoD() < 21){
-                d3.setVisibility(View.VISIBLE);
-                d3.setText(String.valueOf(randomNumDealerCard3));
+            if(blackJack.getSumOfTwoDealerCards() < 21){
+                dealerCard3.setVisibility(View.VISIBLE);
+                dealerCard3.setText(String.valueOf(randomNumDealerCard3));
                 if (String.valueOf(randomNumDealerCard3).equals("10")) {
-                    d3.setText(String.valueOf(getFaceCard()));
+                    dealerCard3.setText(String.valueOf(getFaceCard()));
                 }
-
                 if (String.valueOf(randomNumDealerCard3).equals("11")) {
-                    d3.setText("A");
+                    dealerCard3.setText("A");
                 }
-
-                blackJack.setSumOfThreeDealerCards(addCards(blackJack.getSumOfOneAndTwoD(), randomNumDealerCard3));
+                blackJack.setSumOfThreeDealerCards(addCards(blackJack.getSumOfTwoDealerCards(), randomNumDealerCard3));
             }
             rules();
             dealCard();
@@ -126,79 +117,82 @@ public class MainActivity extends AppCompatActivity {
         int sumOfFourCards;
         //player card #4
         if(counter == 2){
-            p4.setVisibility(View.VISIBLE);
-            p4.setText(String.valueOf(randomNumPlayerCard4));
+            playerCard4.setVisibility(View.VISIBLE);
+            playerCard4.setText(String.valueOf(randomNumPlayerCard4));
             if (String.valueOf(randomNumPlayerCard4).equals("10")) {
-                p4.setText(String.valueOf(getFaceCard()));
+                playerCard4.setText(String.valueOf(getFaceCard()));
             }
 
             if (String.valueOf(randomNumPlayerCard4).equals("11")) {
-                p4.setText("A");
+                playerCard4.setText("A");
             }
-            //blackJack.setCardfFourValue(randomNumPlayerCard4);
 
-                       //****sum of 4 cards
+            //sum of 4 cards
             sumOfFourCards = addCards(blackJack.getSumOfThreeCards(), randomNumPlayerCard4);
-            cards4.setText("p sum of 4 = "+String.valueOf(sumOfFourCards));
             blackJack.setSumOfFourCards(sumOfFourCards);
 
-
-
             //dealer card 4
-            if(blackJack.getSumOfThreeDealerCards() < 21){
-                d4.setText(String.valueOf(randomNumDealerCard4));
-                d4.setVisibility(View.VISIBLE);
+            if(blackJack.getSumOfTwoDealerCards() < 21 && blackJack.getSumOfThreeDealerCards() < 21){
+                dealerCard4.setText(String.valueOf(randomNumDealerCard4));
+                dealerCard4.setVisibility(View.VISIBLE);
                 if (String.valueOf(randomNumDealerCard4).equals("10")) {
-                    d4.setText(String.valueOf(getFaceCard()));
+                    dealerCard4.setText(String.valueOf(getFaceCard()));
                 }
-
                 if (String.valueOf(randomNumDealerCard4).equals("11")) {
-                    d4.setText("A");
+                    dealerCard4.setText("A");
                 }
                //total of 4 dealer cards
-                int dealer4CardSum = addCards(blackJack.getSumOfThreeDealerCards(),randomNumDealerCard4);
-                blackJack.setSumOfFourDealerCards(dealer4CardSum);
+                blackJack.setSumOfFourDealerCards( addCards(blackJack.getSumOfThreeDealerCards(),randomNumDealerCard4));
             }
             rules();
             dealCard();
         }
 
-        //player card 5
         if(counter == 3){
-            p5.setVisibility(View.VISIBLE);
-            p5.setText(String.valueOf(randomNumPlayerCard5));
+            //5th player card
+            playerCard5.setVisibility(View.VISIBLE);
+            playerCard5.setText(String.valueOf(randomNumPlayerCard5));
             if (String.valueOf(randomNumPlayerCard5).equals("10")) {
-                p5.setText(String.valueOf(getFaceCard()));
+                playerCard5.setText(String.valueOf(getFaceCard()));
             }
-
             if (String.valueOf(randomNumPlayerCard5).equals("11")) {
-                p5.setText("A");
+                playerCard5.setText("A");
             }
+            //sum of five player cards
+            blackJack.setSumOfFiveCards(addCards(blackJack.getSumOfFourCards(),randomNumPlayerCard5));
 
-            
-            int sumOfFiveCards = addCards(blackJack.getSumOfFourCards(),randomNumPlayerCard5);
 
             //dealer 5th card
-            if(blackJack.getSumOfFourDealerCards() < 21 && blackJack.getSumOfThreeDealerCards() < 21 && blackJack.getSumOfOneAndTwoD() <21)
-                d5.setVisibility(View.VISIBLE);
-                d5.setText(String.valueOf(randomNumDealerCard5));
+            if(blackJack.getSumOfTwoDealerCards() < 21 && blackJack.getSumOfThreeDealerCards() < 21 && blackJack.getSumOfFiveDealerCards() < 21) {
+                if (String.valueOf(randomNumDealerCard5).equals("10")) {
+                    dealerCard5.setText(String.valueOf(getFaceCard()));
+                }
+                if (String.valueOf(randomNumDealerCard5).equals("11")) {
+                    dealerCard5.setText("A");
+                }
+                dealerCard5.setVisibility(View.VISIBLE);
+                dealerCard5.setText(String.valueOf(randomNumDealerCard5));
+
+                //sum of five dealer cards
+                blackJack.setSumOfFiveDealerCards(addCards(blackJack.getSumOfFourDealerCards(), randomNumDealerCard5));
+            }
             rules();
         }
     }
 
     /**
      * generate a random integer to be used for the player and dealer cards
-     * @param maximum
-     * @param minimum
-     * @return random int
+     * @param maximum - max generated random number
+     * @param minimum - min generated random number
+     * @return random int - the random number
      */
     public int getRandomInteger(int maximum, int minimum) {
         return ((int) (Math.random()*(maximum - minimum))) + minimum;
     }
 
     /**
-     * make a J Q K for the cards
-     * @return
+     * randomly generate a J, Q, or K
+     * @return  J Q or K randomly
      */
     public char getFaceCard() {
         String chars = "JQK";
@@ -208,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * functionality of the play button - start the game and make all buttons visible
      * @param view
      */
     public void letsPlay(View view){
@@ -220,30 +214,39 @@ public class MainActivity extends AppCompatActivity {
         stop = (Button) findViewById(R.id.stopButton);
         stop.setVisibility(View.VISIBLE);
 
-       dealCard();
+        dealCard();
     }
 
+    /**
+     * add together cards that in currently in the player or dealers hand
+     * @param card1 - player or dealer card
+     * @param card2 - player or dealer card
+     * @return the sum of the cards
+     */
     public int addCards(int card1, int card2){
         int sum = card1 + card2;
         return sum;
     }
 
 
+    /**
+     * restart the game
+     * @param view  - to access the button to restart the game
+     */
     public void restartGame(View view) {
         Intent intent = getIntent();
         finish();
         startActivity(intent);
-
     }
 
+    /**
+     * accounts for the rules of the game to the display who won the game
+     */
     public void rules(){
         Button hitButton, stopButton;
         TextView gameOver = (TextView) findViewById(R.id.gameOver);
 
-        int totalOfFourCards = addCards(blackJack.getSumOfThreeCards(), blackJack.getCard4Value());
-        int fiveCardsTotal = addCards(blackJack.getSumOfFourCards(),randomNumPlayerCard5);
-
-        if(blackJack.getSumOfThreeCards() > 21 || blackJack.getSumOfFourCards() > 21 || fiveCardsTotal > 21 ){
+        if(blackJack.getSumOfThreeCards() > 21 || blackJack.getSumOfFourCards() > 21 || blackJack.getSumOfFiveCards() > 21 && blackJack.getSumOfFiveDealerCards() <= 21){
             gameOver.setText("Dealer Won!");
             gameOver.setVisibility(View.VISIBLE);
 
@@ -254,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             stopButton = (Button) findViewById(R.id.stopButton);
             stopButton.setEnabled(false);
         }
-        if( blackJack.getSumOfThreeDealerCards() > 21|| blackJack.getSumOfFourDealerCards()> 21){
+        if( blackJack.getSumOfThreeDealerCards() > 21|| blackJack.getSumOfFourDealerCards() > 21 || (blackJack.getSumOfFiveDealerCards() > 21 && blackJack.getSumOfFiveCards() <= 21)){
             gameOver.setText("Player Won!");
             gameOver.setVisibility(View.VISIBLE);
 
@@ -265,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
             stopButton = (Button) findViewById(R.id.stopButton);
             stopButton.setEnabled(false);
         }
-        if((blackJack.getSumOfThreeCards() > 21 &&  blackJack.getSumOfThreeDealerCards() > 21) || (blackJack.getSumOfFourCards() > 21) && blackJack.getSumOfFourDealerCards()> 21 ){
+        if((blackJack.getSumOfThreeCards() > 21 && blackJack.getSumOfThreeDealerCards() > 21) ||( blackJack.getSumOfFourCards() > 21 && blackJack.getSumOfFourDealerCards()> 21) || (blackJack.getSumOfFiveCards() > 21 && blackJack.getSumOfFiveDealerCards()>21) ){
             gameOver.setText("Tie!");
             gameOver.setVisibility(View.VISIBLE);
 
@@ -286,24 +289,15 @@ public class MainActivity extends AppCompatActivity {
 
         TextView playButton = (TextView) findViewById(R.id.button);
         TextView restartButton = (TextView) findViewById(R.id.restartGame);
+        TextView playerCard1 = (TextView) findViewById(R.id.playerCard1);
+        TextView playerCard2 = (TextView) findViewById(R.id.playerCard2);
+        TextView dealerCard1 = (TextView) findViewById(R.id.dealerCard1);
+        TextView dealerCard2 = (TextView) findViewById(R.id.dealerCard2);
+        TextView gameOver = (TextView) findViewById(R.id.gameOver);
+        Button hitButton, stopButton;
 
         playButton.setVisibility(View.INVISIBLE);
         restartButton.setVisibility(View.VISIBLE);
-
-        //player textviews
-        TextView playerCard1 = (TextView) findViewById(R.id.playerCard1);
-        TextView playerCard2 = (TextView) findViewById(R.id.playerCard2);
-
-        //player card 1 + card 2
-        TextView playerTotal =(TextView) findViewById(R.id.sum);
-
-        //dealer textviews
-        TextView dealerCard1 = (TextView) findViewById(R.id.dealerCard1);
-        TextView dealerCard2 = (TextView) findViewById(R.id.dealerCard2);
-
-        //dealer card 1 + card 2
-        TextView cpTotal =(TextView) findViewById(R.id.cpTotal);
-        TextView gameOver = (TextView) findViewById(R.id.gameOver);
 
         if (counter == 0 ) {
             //card #1 for player
@@ -311,30 +305,41 @@ public class MainActivity extends AppCompatActivity {
                 playerCard1.setText(String.valueOf(randomNumPlayerCard1));
                 if (String.valueOf(randomNumPlayerCard1).equals("11")) {
                     playerCard1.setText("A");
+                    //player has blackjack
+                    if(randomNumPlayerCard1 == 'K' || randomNumPlayerCard2 == 'K')  {
+                        blackJack.playerBlackJack();
+                    }
                 }
                 if (String.valueOf(randomNumPlayerCard1).equals("10")) {
                     playerCard1.setText(String.valueOf(getFaceCard()));
                 }
-                int playerCurrentTotal = addCards(randomNumPlayerCard1, randomNumPlayerCard2);
-                blackJack.setSum2PlayerCards(playerCurrentTotal);
-
-                playerTotal.setText("p 1+2 = "+String.valueOf(playerCurrentTotal));
 
                 //card #2 for player
                 playerCard2.setVisibility(View.VISIBLE);
                 playerCard2.setText(String.valueOf(randomNumPlayerCard2));
                 if (String.valueOf(randomNumPlayerCard2).equals("11")) {
                     playerCard2.setText("A");
+
+                    //player has blackjack
+                    if(randomNumPlayerCard1 == 'K' || randomNumPlayerCard2 == 'K')  {
+                        blackJack.playerBlackJack();
+                    }
                 }
                 if (String.valueOf(randomNumPlayerCard2).equals("10")) {
                     playerCard2.setText(String.valueOf(getFaceCard()));
                 }
+                blackJack.setSum2PlayerCards(addCards(randomNumPlayerCard1, randomNumPlayerCard2));
 
                 //card #1 for dealer
                 dealerCard1.setVisibility(View.VISIBLE);
                 dealerCard1.setText(String.valueOf(randomNumDealerCard1));
                 if (String.valueOf(randomNumDealerCard1).equals("11")) {
                     dealerCard1.setText("A");
+
+                    //dealer has blackjack
+                    if(randomNumDealerCard1 == 'K' || randomNumDealerCard2 == 'K')  {
+                        blackJack.dealerBlackJack();
+                    }
                 }
                 if (String.valueOf(randomNumDealerCard1).equals("10")) {
                     dealerCard1.setText(String.valueOf(getFaceCard()));
@@ -345,17 +350,17 @@ public class MainActivity extends AppCompatActivity {
                 dealerCard2.setText(String.valueOf(randomNumDealerCard2));
                 if (String.valueOf(randomNumDealerCard2).equals("10")) {
                     dealerCard2.setText(String.valueOf(getFaceCard()));
+
+                    if(randomNumDealerCard1 == 'K' || randomNumDealerCard2 == 'K')  {
+                        blackJack.dealerBlackJack();
+                    }
                 }
                 if (String.valueOf(randomNumDealerCard2).equals("11")) {
                     dealerCard2.setText("A");
                 }
-                int cpCurrentTotal = addCards(randomNumDealerCard1, randomNumDealerCard2);
-                blackJack.setSumOfDealOneAndTwo(cpCurrentTotal);
-                cpTotal.setText("cp 1+2 = " + String.valueOf(cpCurrentTotal));
+                blackJack.setSumOfTwoDealerCards(addCards(randomNumDealerCard1, randomNumDealerCard2));
 
-                Button hitButton, stopButton;
-
-                if(cpCurrentTotal > 21){
+                if(blackJack.getSumOfTwoDealerCards() > 21){
                     gameOver.setText("Player Won");
                     gameOver.setVisibility(View.VISIBLE);
 
