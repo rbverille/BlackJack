@@ -1,5 +1,12 @@
 package com.example.ryeverille.blackjack;
 
+/**
+ * This class holds all of the states and main rules for the application
+ *  @author Rain Soto, Rye Verille
+ *  @version 1.0
+ *  @date 10/1/2019
+ */
+
 public class BlackJack {
 
     private int sumOfTwoCards;
