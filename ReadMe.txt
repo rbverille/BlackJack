@@ -26,4 +26,4 @@ For this project not much research was needed. After taking Andriod App developm
 [Rain Soto]
 The following assignment posed great difficuly, because Android Studio would not function properly alongside the emulator. Rye was kind enough to let me use her laptop for the duration of the assignment. Android Studio is very similar to HTML and CSS, but it provides the programmer with more freedom to create faster performance and hardware features. Rye taught me how to implement the TextView portion of the code and how to understand the Model View Controller process. Additionally, Rye handled a majority of the Java pieces. We met on several occasions to discuss solutions and approaches to the overall program. I think our careful planning and organization allowed us to complete the project with ease and in a timely manner. I would say the project took about 12 hours to complete over a span of four days. I can say that following this assignment I am more comfortable with Android Studio. However, I think more practice is necessary to become adept in this program. 
 
-
+youtube video link: https://youtu.be/TiLhNsMy0vE
