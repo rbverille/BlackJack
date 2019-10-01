@@ -9,6 +9,13 @@ import android.content.Intent;
 import org.w3c.dom.Text;
 import java.util.Random;
 
+
+/**
+ * This class serves as the main functionality of the application
+ *  @author Rain Soto, Rye Verille
+ *  @version 1.0
+ *  10/1/2019
+ */
 public class MainActivity extends AppCompatActivity {
 
     BlackJack blackJack = new BlackJack();
