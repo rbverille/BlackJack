@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
     BlackJack blackJack = new BlackJack();
     //players randomized card numbers
-    int randomNumPlayerCard1 = getRandomInteger(12,1);
+    int randomNumPlayerCard1 = getRandomInteger(12,1); // these should be part of your model, not part of the MainAcitivity
     int randomNumPlayerCard2 = getRandomInteger(12,1);
     int randomNumPlayerCard3 = getRandomInteger(12,1);
     int randomNumPlayerCard4 = getRandomInteger(12,1);
-    int randomNumPlayerCard5 = getRandomInteger(12,1);
+    int randomNumPlayerCard5 = getRandomInteger(12,1); 
 
 
     //dealers randomized card numbers
@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     *  This method prduces the functionality of the stop button
-     * @param view  - to access the GUI components
-     *
+     * Provides the functionality of stop button
+     * @param view  the GUI components (which GUI component) 
      */
     public void stop(View view) {
         Button hitButton, stopButton, playButton;
@@ -199,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * randomly generate a J, Q, or K
-     * @return  J Q or K randomly
+     * @return  J Q or K randomly 
      */
     public char getFaceCard() {
         String chars = "JQK";
@@ -210,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * functionality of the play button - start the game and make all buttons visible
-     * @param view
+     * @param view (write a description of what this View object represnets)
      */
     public void letsPlay(View view){
         Button hit;
